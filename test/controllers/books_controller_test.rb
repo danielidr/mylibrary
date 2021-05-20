@@ -1,48 +1,19 @@
 require 'test_helper'
 
 class BooksControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @book = books(:one)
-  end
 
-  test "should get index" do
+  test "get index: is successful" do
     get books_url
     assert_response :success
+    assert_template :index
+    assert_not_nil assigns(:books)
   end
 
-  test "should get new" do
-    get new_book_url
-    assert_response :success
-  end
-
-  test "should create book" do
+  test "post create: creates a book" do
     assert_difference('Book.count') do
-      post books_url, params: { book: { author: @book.author, lend_date: @book.lend_date, returned_date: @book.returned_date, status: @book.status, title: @book.title } }
+      post books_url, params: { book: { author: "J.K Rowling", lend_date: "2020-02-03", returned_date: "2020-02-07", status: "On shelf", title: "Harry Potter and the Philosopher’s Stone" } }
     end
-
     assert_redirected_to book_url(Book.last)
   end
-
-  test "should show book" do
-    get book_url(@book)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_book_url(@book)
-    assert_response :success
-  end
-
-  test "should update book" do
-    patch book_url(@book), params: { book: { author: @book.author, lend_date: @book.lend_date, returned_date: @book.returned_date, status: @book.status, title: @book.title } }
-    assert_redirected_to book_url(@book)
-  end
-
-  test "should destroy book" do
-    assert_difference('Book.count', -1) do
-      delete book_url(@book)
-    end
-
-    assert_redirected_to books_url
-  end
+  
 end
