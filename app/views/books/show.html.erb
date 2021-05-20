@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="mb-4">Showing Book</h1>
+
+<p>
+  <h4>
+    <strong>Title:</strong>
+    <%= @book.title %>
+  </h4>
+</p>
+
+<p>
+  <h4>
+    <strong>Author:</strong>
+    <%= @book.author %>
+  </h4>
+</p>
+
+<p>
+  <h4>
+    <strong>Status:</strong>
+    <%= @book.status %>
+  </h4>
+</p>
+
+<p>
+  <h4>
+    <strong>Lend Date:</strong>
+    <%= @book.lend_date %>
+  </h4>
+</p>
+
+<p>
+  <h4 class="mb-4">
+    <strong>Returned Date:</strong>
+    <%= @book.returned_date %>
+  </h4>
+</p>
+
+<%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-outline-secondary btn-sm' %> |
+<%= link_to 'Back', books_path, class: 'btn btn-outline-secondary btn-sm' %>

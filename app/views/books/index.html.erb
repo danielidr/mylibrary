@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand"><h1>Books</h1></a>
+   <%= search_form_for @q do |f| %>
+    <%= f.label :status_eq %>
+    <%= f.select :status_eq, options_for_select(Book.statuses, @q.status_eq) %>
+    <%= f.submit %>
+  <% end  %>
+</nav>
+
+<table class="table">
+  <thead class="bg-info">
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Status</th>
+      <th>Lend Date</th>
+      <th>Returned Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.author %></td>
+        <td><%= book.status %></td>
+        <td><%= book.lend_date %></td>
+        <td><%= book.returned_date %></td>
+        <td><%= link_to 'Show', book, class: 'btn btn-outline-secondary btn-sm' %></td>
+        <td><%= link_to 'Edit', edit_book_path(book), class: 'btn btn-outline-secondary btn-sm' %></td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary btn-sm" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Book', new_book_path, class: 'text-light btn btn-secondary' %>
